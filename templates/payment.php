@@ -30,8 +30,9 @@
 <body>
 <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
-        <p>Wegens een overschot aan geld is Kevin begonnen met alles voor iedereen betalen. Voor verdere informatie kunt u
-            contact opnemen met Kevin, te bereiken op <a href="mailto:declaratie@kevinbetaaltalles.nl" target="#">declaratie@kevinbetaaltalles.nl</a>
+        <p>
+            Wegens een overschot aan geld is Kevin begonnen met alles voor iedereen te betalen. Voor verdere informatie kunt u contact opnemen met Kevin, te bereiken op 
+            <a href="mailto:declaratie@kevinbetaaltalles.nl" target="#">declaratie@kevinbetaaltalles.nl</a>
         </p>
         <form method="post">
             <div class="form-group" >
