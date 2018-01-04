@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <meta name="description" content="Aangezien je voor iedereen betaalt is het vanzelfsprekend dat je ook voor jezelf betaald Kevin">
+    <meta name="description" content="Aangezien je voor iedereen betaalt is het vanzelfsprekend dat je ook voor jezelf betaalt Kevin">
 
     <!--    <link rel="icon" href="/images/favicon.png">-->
 
