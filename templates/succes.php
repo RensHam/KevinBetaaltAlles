@@ -28,7 +28,7 @@
 <body>
 <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
-        <h1 class="font-weight-bold text-center">Kevin heeft voor <?= htmlspecialchars(ucfirst($name)) ?> &euro; <?= $cost?> betaald</h1>
+        <h1 class="font-weight-bold text-center">Kevin heeft voor <?= htmlspecialchars(ucfirst($name)) ?> &euro;<?= $cost?> betaald</h1>
     </div>
 </div>
 
