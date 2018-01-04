@@ -8,15 +8,7 @@ use Slim\Exception\MethodNotAllowedException;
 use Slim\Exception\NotFoundException;
 use Slim\Views\PhpRenderer;
 
-
-$config = [
-    'settings' => [
-        'displayErrorDetails' => false,
-    ],
-];
-
-$app = new App($config);
-
+$app = new App();
 
 // Get container
 $container = $app->getContainer();
@@ -44,7 +36,6 @@ $app->get('/kevin', function (Request $request, Response $response): Response {
     return $this->view->render($response, 'nope.php');
 });
 
-
 /**
  * Display a page which says Kevin will pay
  * method GET
@@ -55,7 +46,6 @@ $app->get('/{name}', function (Request $request, Response $response, $args): Res
         'name' => $args['name']
     ]);
 });
-
 
 try {
     $app->run();

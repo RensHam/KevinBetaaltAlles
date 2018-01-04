@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Nope</title>
+    <title>Natuurlijk</title>
+    <link rel="stylesheet" href="/assets/css/main.css"/>
 </head>
 <body>
-<div>Natuurlijk betaal je voor jezelf</div>
+<h2 class="centered">Natuurlijk betaal je voor jezelf</h2>
 </body>
 </html>

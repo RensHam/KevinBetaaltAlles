@@ -6,9 +6,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Kevin betaalt alles</title>
+    <link rel="stylesheet" href="/assets/css/main.css"/>
 </head>
 <body>
-<div>Kevin betaalt alles voor <?= ucfirst($name) ?></div>
+<h2 class="centered">Kevin betaalt alles voor <?= ucfirst($name) ?></h2>
 
 </body>
 </html>
