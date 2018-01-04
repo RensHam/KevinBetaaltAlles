@@ -15,7 +15,7 @@ use Slim\Views\PhpRenderer;
 
 $config = [
     'settings' => [
-        'displayErrorDetails' => true,
+        'displayErrorDetails' => false,
     ],
 ];
 
