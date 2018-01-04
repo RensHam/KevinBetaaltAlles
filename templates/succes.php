@@ -1,5 +1,8 @@
 <?php
-/** @var string $name */
+/**
+ * @var int $cost
+ * @var string $name
+ */
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +16,7 @@
     <link rel="stylesheet" href="/assets/css/main.css"/>
 </head>
 <body>
-<h1 class="centered">Kevin betaalt alles voor <?= htmlspecialchars(ucfirst($name)) ?></h1>
+<h1 class="centered">Kevin heeft voor <?= htmlspecialchars(ucfirst($name)) ?> &euro; <?= $cost?> betaald </h1>
 
 </body>
 </html>
