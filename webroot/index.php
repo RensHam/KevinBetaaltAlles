@@ -12,6 +12,7 @@ use Slim\Csrf\Guard;
 use Slim\Exception\MethodNotAllowedException;
 use Slim\Exception\NotFoundException;
 use Slim\Views\PhpRenderer;
+use Respect\Validation\Validator;
 
 $config = [
     'settings' => [
@@ -38,6 +39,19 @@ try {
 } catch (NotFoundExceptionInterface $e) {
 } catch (ContainerExceptionInterface $e) {
 }
+
+//Create the validators
+$textValidator = Validator::alnum()->length(1, 999);
+$numberValidator = Validator::numeric()->positive()->between(1, 2147483647);
+$validators = [
+    'name' => $textValidator,
+    'geld' => $numberValidator,
+    'wat' => $textValidator,
+];
+
+// Register middleware for all routes
+// If you are implementing per-route checks you must not add this
+$app->add(new \DavidePastore\Slim\Validation\Validation($validators));
 
 $app->add(function (Request $request, Response $response, callable $next) {
     $path = $request->getUri()->getPath();
@@ -95,15 +109,19 @@ $app->get('/add/payment', function (Request $request, Response $response): Respo
 });
 
 $app->post('/add/payment', function (Request $request, Response $response): Response {
-    $allPostPutVars = $request->getParsedBody();
+    if($request->getAttribute('has_errors')){
+        return $this->view->render($response, 'fail.php');
+    } else {
+        $allPostPutVars = $request->getParsedBody();
 
-    $db = new DBHandeler();
-    $db->addPayment($allPostPutVars['name'], (int)$allPostPutVars['geld'], $allPostPutVars['wat']);
+        $db = new DBHandeler();
+        $db->addPayment($allPostPutVars['name'], (int)$allPostPutVars['geld'], $allPostPutVars['wat']);
 
-    return $this->view->render($response, 'succes.php', [
-        'cost' => $allPostPutVars['geld'],
-        'name' => $allPostPutVars['name'],
-    ]);
+        return $this->view->render($response, 'succes.php', [
+            'cost' => $allPostPutVars['geld'],
+            'name' => $allPostPutVars['name'],
+        ]);
+    }
 });
 
 try {
