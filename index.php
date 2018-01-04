@@ -28,9 +28,9 @@ $app->get('/', function (Request $request, Response $response): Response {
 });
 
 /**
- * Display a page which says Kevin will pay
+ * Display a page which says Kevin will pay for him self off course he will.
  * method GET
- * url /{name}
+ * url /kevin
  */
 $app->get('/kevin', function (Request $request, Response $response): Response {
     return $this->view->render($response, 'nope.php');
