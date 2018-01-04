@@ -43,7 +43,7 @@
 </div>
 <footer>
     <div class="container">
-        <span class="text-muted text-center">Er zijn al <?= $count ?> betalingen gemaakt door Kevin met een totale waarde van &euro; <?= $total ?></span>
+        <span class="text-muted text-center">Er zijn al <?= $count ?> betalingen gemaakt door Kevin met een totale waarde van &euro;<?= $total ?></span>
     </div>
 </footer>
 </body>
