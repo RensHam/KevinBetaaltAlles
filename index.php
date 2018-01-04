@@ -10,6 +10,15 @@ use Slim\Views\PhpRenderer;
 
 $app = new App();
 
+
+$app->add(function (\Slim\Http\Request $request, \Slim\Http\Response $response, callable $next) {
+
+    $path = $request->getUri()->getPath();
+    $path = (strtolower($path) == 'kevin') ? 'kevin' : $path;
+    $uri = $request->getUri()->withPath($path);
+    return $next($request->withUri($uri), $response);
+});
+
 // Get container
 $container = $app->getContainer();
 
@@ -43,7 +52,7 @@ $app->get('/kevin', function (Request $request, Response $response): Response {
  */
 $app->get('/{name}', function (Request $request, Response $response, $args): Response {
     return $this->view->render($response, 'index.php', [
-        'name' => $args['name']
+        'name' => $args['name'],
     ]);
 });
 
