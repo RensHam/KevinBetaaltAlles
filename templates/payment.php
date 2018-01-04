@@ -18,7 +18,7 @@
     <title>Natuurlijk</title>
     <link rel="stylesheet" href="/assets/css/main.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111964650-1"></script>
+    <script src="https://www.googletagmanager.com/gtag/js?id=UA-111964650-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
