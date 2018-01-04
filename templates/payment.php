@@ -27,15 +27,15 @@
         </p>
         <form method="post">
             <div class="form-group" >
-                <label for="formGroupExampleInput">Wie ben je?</label>
+                <label for="">Wie ben je?</label>
                 <input type="text" class="form-control" id="formGroupExampleInput" name="name" placeholder="Piet">
             </div>
             <div class="form-group">
-                <label for="formGroupExampleInput2">Hoeveel</label>
+                <label for="">Hoeveel</label>
                 <input type="number" name="geld" class="form-control" id="formGroupExampleInput2" placeholder="4747">
             </div>
             <div class="form-group" >
-                <label for="formGroupExampleInput">Waarvoor betaalt Kevin?</label>
+                <label for="">Waarvoor betaalt Kevin?</label>
                 <input type="text" class="form-control" id="formGroupExampleInput" name="wat" placeholder="Een huis...">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
