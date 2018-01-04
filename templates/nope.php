@@ -6,6 +6,6 @@
     <link rel="stylesheet" href="/assets/css/main.css"/>
 </head>
 <body>
-<h2 class="centered">Natuurlijk betaal je voor jezelf</h2>
+<h1 class="centered">Natuurlijk betaal je voor jezelf</h1>
 </body>
 </html>
