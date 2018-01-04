@@ -15,7 +15,7 @@ use Slim\Views\PhpRenderer;
 
 $config = [
     'settings' => [
-        'displayErrorDetails' => false,
+        'displayErrorDetails' => true,
     ],
 ];
 
@@ -26,7 +26,7 @@ $container = $app->getContainer();
 
 // Register component on container
 $container['view'] = function ($container) {
-    return new PhpRenderer('templates/');
+    return new PhpRenderer('../templates/');
 };
 
 $container['csrf'] = function ($c) {
