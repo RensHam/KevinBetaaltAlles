@@ -17,25 +17,33 @@
     <meta charset="UTF-8">
     <title>Natuurlijk</title>
     <link rel="stylesheet" href="/assets/css/main.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 </head>
 <body>
-<p>Wegens een overschot aan geld is Kevin begonnen met alles voor iedereen betalen. Voor verdere informatie kunt u
-    contact opnemen met Kevin, te bereiken op <a href="mailto:declaratie@kevinbetaaltalles.nl" target="#">declaratie@kevinbetaaltalles.nl</a>
-</p>
-<form method="post">
-    <label>
-        je naam: <input type="text" name="name">
-    </label>
-    <label>
-        hoeveel: <input type="number" name="geld">
-    </label>
-    <label>
-        wat: <input type="text" name="wat">
-    </label>
-    <input type="submit">
-    <input type="hidden" name="<?= $nameKey ?>" value="<?= $name ?>">
-    <input type="hidden" name="<?= $valueKey ?>" value="<?= $value ?>">
-</form>
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <p>Wegens een overschot aan geld is Kevin begonnen met alles voor iedereen betalen. Voor verdere informatie kunt u
+            contact opnemen met Kevin, te bereiken op <a href="mailto:declaratie@kevinbetaaltalles.nl" target="#">declaratie@kevinbetaaltalles.nl</a>
+        </p>
+        <form method="post">
+            <div class="form-group" >
+                <label for="formGroupExampleInput">Wie ben je?</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" name="name" placeholder="Piet">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Hoeveel</label>
+                <input type="number" name="geld" class="form-control" id="formGroupExampleInput2" placeholder="4747">
+            </div>
+            <div class="form-group" >
+                <label for="formGroupExampleInput">Waarvoor betaalt Kevin?</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" name="wat" placeholder="Een huis...">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <input type="hidden" name="<?= $nameKey ?>" value="<?= $name ?>">
+            <input type="hidden" name="<?= $valueKey ?>" value="<?= $value ?>">
+        </form>
+    </div>
+</div>
 </body>
 </html>
 

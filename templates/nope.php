@@ -6,20 +6,16 @@
     <meta name="description"
           content="Aangezien je voor iedereen betaalt is het vanzelfsprekend dat je ook voor jezelf betaalt Kevin">
 
-    <!--    <link rel="icon" href="/images/favicon.png">-->
-
-    <!-- See https://goo.gl/qRE0vM -->
-    <!--    <meta name="theme-color" content="#000">-->
-
-    <!-- Tile icon for Windows 8 (144x144 + tile color) -->
-    <!--    <meta name="msapplication-TileImage" content="/images/manifest/icon-144x144.png">-->
-    <!--    <meta name="msapplication-TileColor" content="#000">-->
-    <!--    <meta name="msapplication-tap-highlight" content="no">-->
     <meta charset="UTF-8">
     <title>Natuurlijk</title>
     <link rel="stylesheet" href="/assets/css/main.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 </head>
 <body>
-<h1 class="centered">Natuurlijk betaal je voor jezelf</h1>
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <h1 class="font-weight-bold text-center">Natuurlijk betaal je voor jezelf</h1>
+    </div>
+</div>
 </body>
 </html>
