@@ -18,4 +18,9 @@ class DBHandeler
         $statement->bindParam(':amount', $amount);
         return $statement->execute();
     }
+
+    public function totalPayments()
+    {
+        return $this->conn->query('SELECT SUM(amount) as amount, COUNT(*) as payments FROM payments')->fetchObject();
+    }
 }

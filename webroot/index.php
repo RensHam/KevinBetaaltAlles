@@ -52,7 +52,12 @@ $app->add(function (Request $request, Response $response, callable $next) {
  * url /
  */
 $app->get('/', function (Request $request, Response $response): Response {
-    return $this->view->render($response, 'home.php');
+    $db = new DBHandeler();
+    $data = $db->totalPayments();
+    return $this->view->render($response, 'home.php', [
+        'total' => $data->amount,
+        'count' => $data->payments,
+    ]);
 });
 
 /**
