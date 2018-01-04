@@ -24,7 +24,7 @@ $container['view'] = function ($container) {
  * url /
  */
 $app->get('/', function (Request $request, Response $response): Response {
-    return $response;
+    return $this->view->render($response, 'home.php');
 });
 
 /**
