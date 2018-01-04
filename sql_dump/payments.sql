@@ -27,6 +27,7 @@ CREATE TABLE `payments` (
   `user_name` text,
   `amount` int(11) DEFAULT NULL,
   `payment_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `description` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

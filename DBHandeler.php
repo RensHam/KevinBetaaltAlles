@@ -11,11 +11,12 @@ class DBHandeler
             Config::DB_PASSWORD);
     }
 
-    public function addPayment(string $name, int $amount): bool
+    public function addPayment(string $name, int $amount, string $description): bool
     {
-        $statement = $this->conn->prepare('INSERT INTO payments (user_name, amount) VALUES (:user_name, :amount)');
+        $statement = $this->conn->prepare('INSERT INTO payments (user_name, amount, description) VALUES (:user_name, :amount, :description)');
         $statement->bindParam('user_name', $name);
         $statement->bindParam(':amount', $amount);
+        $statement->bindParam(':description', $description);
         return $statement->execute();
     }
 

@@ -29,6 +29,9 @@
     <label>
         hoeveel: <input type="number" name="geld">
     </label>
+    <label>
+        wat: <input type="text" name="wat">
+    </label>
     <input type="submit">
     <input type="hidden" name="<?= $nameKey ?>" value="<?= $name ?>">
     <input type="hidden" name="<?= $valueKey ?>" value="<?= $value ?>">

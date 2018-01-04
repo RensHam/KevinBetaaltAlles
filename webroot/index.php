@@ -98,7 +98,7 @@ $app->post('/add/payment', function (Request $request, Response $response): Resp
     $allPostPutVars = $request->getParsedBody();
 
     $db = new DBHandeler();
-    $db->addPayment($allPostPutVars['name'], (int)$allPostPutVars['geld']);
+    $db->addPayment($allPostPutVars['name'], (int)$allPostPutVars['geld'], $allPostPutVars['wat']);
 
     return $this->view->render($response, 'succes.php', [
         'cost' => $allPostPutVars['geld'],
