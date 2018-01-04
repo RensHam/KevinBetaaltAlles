@@ -9,7 +9,6 @@
 
 div.home {
     position: fixed;
-    top: calc(50% - 1.5em);
     width: 100%;
     text-align: center;
     font-family: Verdana, Geneva, sans-serif;
