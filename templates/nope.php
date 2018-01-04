@@ -21,8 +21,5 @@
 </head>
 <body>
 <h1 class="centered">Natuurlijk betaal je voor jezelf</h1>
-<p>Wegens een overschot aan geld is Kevin begonnen met alles voor iedereen betalen. Voor verdere informatie kunt u
-    contact opnemen met Kevin, te bereiken op <a href="mailto:declaratie@kevinbetaaltalles.nl" target="#">declaratie@kevinbetaaltalles.nl</a>
-</p>
 </body>
 </html>
