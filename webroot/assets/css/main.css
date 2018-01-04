@@ -7,15 +7,6 @@
     font-size: 3em;
 }
 
-.footer {
-    position:fixed;
-    left:0;
-    bottom:0;
-    height:30px;
-    width:100%;
-    text-align: center;
-}
-
 div.home {
     position: fixed;
     width: 100%;
