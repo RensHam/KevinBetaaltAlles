@@ -19,9 +19,11 @@
     <link rel="stylesheet" href="/assets/css/main.css"/>
 </head>
 <body>
-<h1 class="centered">Kevin betaalt altijd alles</h1>
-<p class="centered_small">Wegens een overschot aan geld is Kevin begonnen met alles voor iedereen betalen. Voor verdere informatie kunt u
+<div class="home">
+<h1 class="home">Kevin betaalt altijd alles</h1>
+<p class="home">Wegens een overschot aan geld is Kevin begonnen met alles voor iedereen betalen. Voor verdere informatie kunt u
     contact opnemen met Kevin, te bereiken op <a href="mailto:declaratie@kevinbetaaltalles.nl" target="#">declaratie@kevinbetaaltalles.nl</a>.
 </p>
+</div>
 </body>
 </html>
