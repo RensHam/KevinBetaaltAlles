@@ -49,10 +49,9 @@ $validators = [
     'wat' => $textValidator,
 ];
 
-// Register middleware for all routes
-// If you are implementing per-route checks you must not add this
-$app->add(new \DavidePastore\Slim\Validation\Validation($validators));
-
+/**
+ * Make sure kevin always reaches the correct route
+ */
 $app->add(function (Request $request, Response $response, callable $next) {
     $path = $request->getUri()->getPath();
     $path = (strtolower($path) == '/kevin') ? '/kevin' : $path;
@@ -94,6 +93,11 @@ $app->get('/{name}', function (Request $request, Response $response, array $args
     ]);
 });
 
+/**
+ * Get the form page to add a payment
+ * method GET
+ * url /add/payment
+ */
 $app->get('/add/payment', function (Request $request, Response $response): Response {
     $nameKey = $this->csrf->getTokenNameKey();
     $valueKey = $this->csrf->getTokenValueKey();
@@ -108,6 +112,11 @@ $app->get('/add/payment', function (Request $request, Response $response): Respo
     ]);
 });
 
+/**
+ * Add a payment to the database and validate user input on error an error page is shown else a succes page
+ * method POST
+ * url /add/payment
+ */
 $app->post('/add/payment', function (Request $request, Response $response): Response {
     if($request->getAttribute('has_errors')){
         return $this->view->render($response, 'fail.php');
@@ -122,7 +131,7 @@ $app->post('/add/payment', function (Request $request, Response $response): Resp
             'name' => $allPostPutVars['name'],
         ]);
     }
-});
+})->add(new \DavidePastore\Slim\Validation\Validation($validators));
 
 try {
     $app->run();
