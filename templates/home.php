@@ -20,7 +20,11 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111964650-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'UA-111964650-1');
@@ -34,7 +38,8 @@
                 <h1 class="font-weight-bold home">Kevin betaalt altijd alles</h1>
                 <p class="home">Wegens een overschot aan geld is Kevin begonnen met alles voor iedereen te betalen. Voor
                     verdere informatie kunt u contact opnemen met Kevin, te bereiken op
-                    <a href="mailto:declaratie@kevinbetaaltalles.nl" target="#">declaratie@kevinbetaaltalles.nl</a>
+                    <a href="mailto:kevinbetaaltalles@gmail.com" target="#">declaratie@kevinbetaaltalles.nl</a> of voer
+                    een declaratie in op <a href="/add/payment"> https://kevinbetaaltalles.nl/add/payment</a>
                 </p>
             </div>
         </div>

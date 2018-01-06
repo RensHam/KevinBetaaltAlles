@@ -10,7 +10,7 @@ class DBHandeler
 
     public function __construct()
     {
-        $this->conn = new PDO('mysql:host=' . Config::DB_HOST . ';dbname=' . Config::DB_NAME, Config::DB_USERNAME,
+        $this->conn = new PDO('mysql:host=' . Config::DB_HOST . ';dbname=' . Config::DB_NAME . ';charset=utf8', Config::DB_USERNAME,
             Config::DB_PASSWORD);
     }
 

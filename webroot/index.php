@@ -3,6 +3,7 @@ session_start();
 require '../vendor/autoload.php';
 require '../DBHandeler.php';
 
+use DavidePastore\Slim\Validation\Validation;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Slim\App;
@@ -131,7 +132,7 @@ $app->post('/add/payment', function (Request $request, Response $response): Resp
             'name' => $allPostPutVars['name'],
         ]);
     }
-})->add(new \DavidePastore\Slim\Validation\Validation($validators));
+})->add(new Validation($validators));
 
 try {
     $app->run();
