@@ -4,6 +4,7 @@
  * @var string $valueKey
  * @var string $name
  * @var string $value
+ * @var string $payer
  */
 
 ?>
@@ -31,21 +32,21 @@
 <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
         <p>
-            Wegens een overschot aan geld is Kevin begonnen met alles voor iedereen te betalen. Voor verdere informatie kunt u contact opnemen met Kevin, te bereiken op 
-            <a href="mailto:kevinbetaaltalles@gmail.com" target="#">declaratie@kevinbetaaltalles.nl</a>
+            Wegens een overschot aan geld is <?= htmlentities(ucfirst($payer)) ?> begonnen met alles voor iedereen te betalen. Voor verdere informatie kunt u contact opnemen met <?= htmlentities(ucfirst($payer)) ?>, te bereiken op
+            <a href="mailto:kevinbetaaltalles@gmail.com" target="#">declaratie@<?= htmlentities($payer) ?>betaaltalles.nl</a>
         </p>
         <form method="post">
             <div class="form-group" >
-                <label for="">Wie ben je?</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" name="name" placeholder="Piet">
+                <label for="name">Wie ben je?</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Piet">
             </div>
             <div class="form-group">
-                <label for="">Hoeveel</label>
-                <input type="number" name="geld" class="form-control" id="formGroupExampleInput2" placeholder="4747">
+                <label for="cash">Hoeveel</label>
+                <input type="number" name="geld" class="form-control" id="cash" placeholder="4747">
             </div>
             <div class="form-group" >
-                <label for="">Waarvoor betaalt Kevin?</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" name="wat" placeholder="Een huis...">
+                <label for="wat">Waarvoor betaalt <?= htmlentities(ucfirst($payer)) ?>?</label>
+                <input type="text" class="form-control" id="wat" name="wat" placeholder="Een huis...">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
             <input type="hidden" name="<?= $nameKey ?>" value="<?= $name ?>">

@@ -2,6 +2,7 @@
 /**
  * @var int $total
  * @var int $count
+ * @var string $payer
  */
 
 ?>
@@ -35,11 +36,11 @@
     <main class="main">
         <div class="container">
             <div class="text-center">
-                <h1 class="font-weight-bold home">Kevin betaalt altijd alles</h1>
-                <p class="home">Wegens een overschot aan geld is Kevin begonnen met alles voor iedereen te betalen. Voor
-                    verdere informatie kunt u contact opnemen met Kevin, te bereiken op
-                    <a href="mailto:kevinbetaaltalles@gmail.com" target="#">declaratie@kevinbetaaltalles.nl</a> of voer
-                    een declaratie in op <a href="/add/payment"> https://kevinbetaaltalles.nl/add/payment</a>
+                <h1 class="font-weight-bold home"><?= htmlentities(ucfirst($payer)) ?> betaalt altijd alles</h1>
+                <p class="home">Wegens een overschot aan geld is <?= htmlentities(ucfirst($payer)) ?> begonnen met alles voor iedereen te betalen. Voor
+                    verdere informatie kunt u contact opnemen met <?= htmlentities(ucfirst($payer)) ?>, te bereiken op
+                    <a href="mailto:kevinbetaaltalles@gmail.com" target="#">declaratie@<?= htmlentities($payer) ?>betaaltalles.nl</a> of voer
+                    een declaratie in op <a href="/add/payment"> http://<?= htmlentities(ucfirst($payer)) ?>.betaaltalles.nl/add/payment</a>
                 </p>
             </div>
         </div>
@@ -48,7 +49,7 @@
 </div>
 <footer>
     <div class="container">
-        <span class="text-muted text-center">Er zijn al <?= $count ?> betalingen gemaakt door Kevin met een totale waarde van &euro;<?= $total ?></span>
+        <span class="text-muted text-center">Er zijn al <?= $count ?> betalingen gemaakt door <?= htmlentities(ucfirst($payer)) ?> met een totale waarde van &euro;<?= $total ?></span>
     </div>
 </footer>
 </body>

@@ -50,6 +50,12 @@ $validators = [
     'wat' => $textValidator,
 ];
 
+if (strpos(strtolower($_SERVER['HTTP_HOST']), 'kevin') !== false) {
+    $paying_user = 'kevin';
+} else {
+    $paying_user = strtolower(explode('.', $_SERVER['HTTP_HOST'])[0]);
+}
+
 /**
  * Make sure kevin always reaches the correct route
  */
@@ -65,12 +71,13 @@ $app->add(function (Request $request, Response $response, callable $next) {
  * method GET
  * url /
  */
-$app->get('/', function (Request $request, Response $response): Response {
-    $db = new DBHandeler();
+$app->get('/', function (Request $request, Response $response) use ($paying_user): Response {
+    $db = new DBHandeler($paying_user);
     $data = $db->totalPayments();
     return $this->view->render($response, 'home.php', [
         'total' => $data->amount,
         'count' => $data->payments,
+        'payer' => $paying_user,
     ]);
 });
 
@@ -88,9 +95,10 @@ $app->get('/kevin', function (Request $request, Response $response): Response {
  * method GET
  * url /{name}
  */
-$app->get('/{name}', function (Request $request, Response $response, array $args): Response {
+$app->get('/{name}', function (Request $request, Response $response, array $args) use ($paying_user): Response {
     return $this->view->render($response, 'index.php', [
         'name' => $args['name'],
+        'payer' => $paying_user,
     ]);
 });
 
@@ -99,7 +107,7 @@ $app->get('/{name}', function (Request $request, Response $response, array $args
  * method GET
  * url /add/payment
  */
-$app->get('/add/payment', function (Request $request, Response $response): Response {
+$app->get('/add/payment', function (Request $request, Response $response) use ($paying_user): Response {
     $nameKey = $this->csrf->getTokenNameKey();
     $valueKey = $this->csrf->getTokenValueKey();
     $name = $request->getAttribute($nameKey);
@@ -110,6 +118,7 @@ $app->get('/add/payment', function (Request $request, Response $response): Respo
         'valueKey' => $valueKey,
         'name' => $name,
         'value' => $value,
+        'payer' => $paying_user,
     ]);
 });
 
@@ -118,18 +127,19 @@ $app->get('/add/payment', function (Request $request, Response $response): Respo
  * method POST
  * url /add/payment
  */
-$app->post('/add/payment', function (Request $request, Response $response): Response {
-    if($request->getAttribute('has_errors')){
+$app->post('/add/payment', function (Request $request, Response $response) use ($paying_user): Response {
+    if ($request->getAttribute('has_errors')) {
         return $this->view->render($response, 'fail.php');
     } else {
         $allPostPutVars = $request->getParsedBody();
 
-        $db = new DBHandeler();
+        $db = new DBHandeler($paying_user);
         $db->addPayment($allPostPutVars['name'], (int)$allPostPutVars['geld'], $allPostPutVars['wat']);
 
         return $this->view->render($response, 'succes.php', [
             'cost' => $allPostPutVars['geld'],
             'name' => $allPostPutVars['name'],
+            'payer' => $paying_user,
         ]);
     }
 })->add(new Validation($validators));

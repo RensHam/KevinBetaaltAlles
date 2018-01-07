@@ -7,11 +7,13 @@ require 'Config.php';
 class DBHandeler
 {
     private $conn;
+    private $payer;
 
-    public function __construct()
+    public function __construct(string $payer)
     {
         $this->conn = new PDO('mysql:host=' . Config::DB_HOST . ';dbname=' . Config::DB_NAME . ';charset=utf8', Config::DB_USERNAME,
             Config::DB_PASSWORD);
+        $this->payer = $payer;
     }
 
     /**
@@ -23,10 +25,11 @@ class DBHandeler
      */
     public function addPayment(string $name, int $amount, string $description): bool
     {
-        $statement = $this->conn->prepare('INSERT INTO payments (user_name, amount, description) VALUES (:user_name, :amount, :description)');
+        $statement = $this->conn->prepare('INSERT INTO payments (user_name, amount, description,payer) VALUES (:user_name, :amount, :description,:payer)');
         $statement->bindParam('user_name', $name);
         $statement->bindParam(':amount', $amount);
         $statement->bindParam(':description', $description);
+        $statement->bindParam(':payer', $payer);
         return $statement->execute();
     }
 
@@ -36,6 +39,9 @@ class DBHandeler
      */
     public function totalPayments()
     {
-        return $this->conn->query('SELECT SUM(amount) as amount, COUNT(*) as payments FROM payments')->fetchObject();
+        $statement = $this->conn->prepare('SELECT SUM(amount) as amount, COUNT(*) as payments FROM payments WHERE payer = :payer');
+        $statement->bindParam(':payer', $this->payer);
+        $statement->execute();
+        return $statement->fetchObject();
     }
 }
