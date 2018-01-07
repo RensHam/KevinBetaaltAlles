@@ -89,8 +89,10 @@ $app->get('/', function (Request $request, Response $response) use ($paying_user
  * method GET
  * url /kevin
  */
-$app->get('/kevin', function (Request $request, Response $response): Response {
-    return $this->view->render($response, 'nope.php');
+$app->get('/kevin', function (Request $request, Response $response) use ($paying_user): Response {
+    return $this->view->render($response, 'nope.php', [
+        'payer' => $paying_user,
+    ]);
 });
 
 /**

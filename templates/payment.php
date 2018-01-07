@@ -13,7 +13,7 @@
 <head>
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <meta name="description" content="Kevin betaalt altijd alles">
+    <meta name="description" content="<?= htmlentities(ucfirst($payer)) ?> betaalt altijd alles">
 
     <meta charset="UTF-8">
     <title>Natuurlijk</title>

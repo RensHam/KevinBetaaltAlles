@@ -1,9 +1,14 @@
+<?php
+/**
+ * @var string $payer
+ */
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <meta name="description" content="Kevin betaalt alles">
+    <meta name="description" content="<?= htmlentities(ucfirst($payer)) ?> betaalt alles">
 
     <meta charset="UTF-8">
     <title>Fail</title>
