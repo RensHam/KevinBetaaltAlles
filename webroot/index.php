@@ -62,9 +62,9 @@ if (strpos(strtolower($_SERVER['HTTP_HOST']), 'kevin') !== false) {
 /**
  * Make sure kevin always reaches the correct route
  */
-$app->add(function (Request $request, Response $response, callable $next) {
+$app->add(function (Request $request, Response $response, callable $next) use ($paying_user) {
     $path = $request->getUri()->getPath();
-    $path = (strtolower($path) == '/kevin') ? '/kevin' : $path;
+    $path = (strtolower($path) == '/' . $paying_user) ? '/' . $paying_user : $path;
     $uri = $request->getUri()->withPath($path);
     return $next($request->withUri($uri), $response);
 });
@@ -89,7 +89,7 @@ $app->get('/', function (Request $request, Response $response) use ($paying_user
  * method GET
  * url /kevin
  */
-$app->get('/kevin', function (Request $request, Response $response) use ($paying_user): Response {
+$app->get('/' . $paying_user, function (Request $request, Response $response) use ($paying_user): Response {
     return $this->view->render($response, 'nope.php', [
         'payer' => $paying_user,
     ]);
