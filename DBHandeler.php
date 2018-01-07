@@ -29,7 +29,7 @@ class DBHandeler
         $statement->bindParam('user_name', $name);
         $statement->bindParam(':amount', $amount);
         $statement->bindParam(':description', $description);
-        $statement->bindParam(':payer', $payer);
+        $statement->bindParam(':payer', $this->payer);
         return $statement->execute();
     }
 

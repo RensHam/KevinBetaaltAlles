@@ -40,7 +40,7 @@
                 <p class="home">Wegens een overschot aan geld is <?= htmlentities(ucfirst($payer)) ?> begonnen met alles voor iedereen te betalen. Voor
                     verdere informatie kunt u contact opnemen met <?= htmlentities(ucfirst($payer)) ?>, te bereiken op
                     <a href="mailto:kevinbetaaltalles@gmail.com" target="#">declaratie@<?= htmlentities($payer) ?>betaaltalles.nl</a> of voer
-                    een declaratie in op <a href="/add/payment"> http://<?= htmlentities(ucfirst($payer)) ?>.betaaltalles.nl/add/payment</a>
+                    een declaratie in op <a href="/add/payment"> http://<?= htmlentities($payer) ?>.betaaltalles.nl/add/payment</a>
                 </p>
             </div>
         </div>
