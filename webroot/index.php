@@ -54,6 +54,9 @@ if (strpos(strtolower($_SERVER['HTTP_HOST']), 'kevin') !== false) {
     $paying_user = 'kevin';
 } else {
     $paying_user = strtolower(explode('.', $_SERVER['HTTP_HOST'])[0]);
+    if ($paying_user == 'betaaltalles' || $paying_user == 'rens') {
+        $paying_user = 'kevin';
+    }
 }
 
 /**
