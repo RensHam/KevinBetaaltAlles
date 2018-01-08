@@ -51,47 +51,26 @@ $validators = [
 ];
 
 if (strpos(strtolower($_SERVER['HTTP_HOST']), 'kevin') !== false) {
-    $paying_user = 'kevin';
+    $payingUser = 'kevin';
 } else {
-    $paying_user = strtolower(explode('.', $_SERVER['HTTP_HOST'])[0]);
-    if ($paying_user == 'betaaltalles' || $paying_user == 'rens') {
-        $paying_user = 'kevin';
+    $payingUser = strtolower(explode('.', $_SERVER['HTTP_HOST'])[0]);
+    if ($payingUser == 'betaaltalles' || $payingUser == 'rens') {
+        $payingUser = 'kevin';
     }
 }
-
-/**
- * Make sure kevin always reaches the correct route
- */
-$app->add(function (Request $request, Response $response, callable $next) use ($paying_user) {
-    $path = $request->getUri()->getPath();
-    $path = (strtolower($path) == '/' . $paying_user) ? '/' . $paying_user : $path;
-    $uri = $request->getUri()->withPath($path);
-    return $next($request->withUri($uri), $response);
-});
 
 /**
  * Return home page
  * method GET
  * url /
  */
-$app->get('/', function (Request $request, Response $response) use ($paying_user): Response {
-    $db = new DBHandeler($paying_user);
+$app->get('/', function (Request $request, Response $response) use ($payingUser): Response {
+    $db = new DBHandeler($payingUser);
     $data = $db->totalPayments();
     return $this->view->render($response, 'home.php', [
         'total' => $data->amount,
         'count' => $data->payments,
-        'payer' => $paying_user,
-    ]);
-});
-
-/**
- * Display a page which says Kevin will pay for him self off course he will.
- * method GET
- * url /kevin
- */
-$app->get('/' . $paying_user, function (Request $request, Response $response) use ($paying_user): Response {
-    return $this->view->render($response, 'nope.php', [
-        'payer' => $paying_user,
+        'payer' => $payingUser,
     ]);
 });
 
@@ -100,11 +79,17 @@ $app->get('/' . $paying_user, function (Request $request, Response $response) us
  * method GET
  * url /{name}
  */
-$app->get('/{name}', function (Request $request, Response $response, array $args) use ($paying_user): Response {
-    return $this->view->render($response, 'index.php', [
-        'name' => $args['name'],
-        'payer' => $paying_user,
-    ]);
+$app->get('/{name}', function (Request $request, Response $response, array $args) use ($payingUser): Response {
+    if (strtolower($args['name']) == $payingUser) {
+        return $this->view->render($response, 'nope.php', [
+            'payer' => $payingUser,
+        ]);
+    } else {
+        return $this->view->render($response, 'index.php', [
+            'name' => $args['name'],
+            'payer' => $payingUser,
+        ]);
+    }
 });
 
 /**
@@ -112,7 +97,7 @@ $app->get('/{name}', function (Request $request, Response $response, array $args
  * method GET
  * url /add/payment
  */
-$app->get('/add/payment', function (Request $request, Response $response) use ($paying_user): Response {
+$app->get('/add/payment', function (Request $request, Response $response) use ($payingUser): Response {
     $nameKey = $this->csrf->getTokenNameKey();
     $valueKey = $this->csrf->getTokenValueKey();
     $name = $request->getAttribute($nameKey);
@@ -123,7 +108,7 @@ $app->get('/add/payment', function (Request $request, Response $response) use ($
         'valueKey' => $valueKey,
         'name' => $name,
         'value' => $value,
-        'payer' => $paying_user,
+        'payer' => $payingUser,
     ]);
 });
 
@@ -132,19 +117,19 @@ $app->get('/add/payment', function (Request $request, Response $response) use ($
  * method POST
  * url /add/payment
  */
-$app->post('/add/payment', function (Request $request, Response $response) use ($paying_user): Response {
+$app->post('/add/payment', function (Request $request, Response $response) use ($payingUser): Response {
     if ($request->getAttribute('has_errors')) {
         return $this->view->render($response, 'fail.php');
     } else {
         $allPostPutVars = $request->getParsedBody();
 
-        $db = new DBHandeler($paying_user);
+        $db = new DBHandeler($payingUser);
         $db->addPayment($allPostPutVars['name'], (int)$allPostPutVars['geld'], $allPostPutVars['wat']);
 
         return $this->view->render($response, 'succes.php', [
             'cost' => $allPostPutVars['geld'],
             'name' => $allPostPutVars['name'],
-            'payer' => $paying_user,
+            'payer' => $payingUser,
         ]);
     }
 })->add(new Validation($validators));
