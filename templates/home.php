@@ -1,7 +1,6 @@
 <?php
 /**
- * @var int $total
- * @var int $count
+ * @var Payments $payments
  * @var string $payer
  */
 
@@ -48,8 +47,8 @@
     <div class="push"></div>
 </div>
 <footer>
-    <div class="container">
-        <span class="text-muted text-center">Er zijn al <?= $count ?> betalingen gemaakt door <?= htmlentities(ucfirst($payer)) ?> met een totale waarde van &euro;<?= $total ?></span>
+    <div class="container text-center">
+        <span class="text-muted text-center">Er zijn al <?= $payments->count ?> betalingen gemaakt door <?= htmlentities(ucfirst($payer)) ?> met een totale waarde van &euro;<?= (int) $payments->amount ?></span>
     </div>
 </footer>
 </body>

@@ -2,6 +2,7 @@
 /**
  * @var string $name
  * @var string $payer
+ * @var Payments $payments
  */
 ?>
 <!DOCTYPE html>
@@ -14,11 +15,16 @@
 
     <title><?= htmlentities(ucfirst($payer)) ?> betaalt alles</title>
     <link rel="stylesheet" href="/assets/css/main.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+          integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111964650-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'UA-111964650-1');
@@ -26,8 +32,14 @@
 </head>
 <body>
 <div class="container h-100">
-    <div class="row h-100 justify-content-center align-items-center">
-        <h1 class="font-weight-bold text-center"><?= htmlentities(ucfirst($payer)) ?> betaalt alles voor <?= htmlspecialchars(ucfirst($name)) ?></h1>
+    <div class="row h-100 justify-content-center text-center align-items-center">
+        <div>
+            <h1 class="font-weight-bold"><?= htmlentities(ucfirst($payer)) ?> betaalt alles
+                voor <?= htmlspecialchars(ucfirst($name)) ?></h1>
+            <small class="form-text text-muted">Er zijn al <?= $payments->count ?> betalingen gemaakt
+                door <?= htmlentities(ucfirst($payer)) ?> voor <?= htmlspecialchars(ucfirst($name)) ?> met een totale waarde
+                van &euro;<?= (int)$payments->amount ?></small>
+        </div>
     </div>
 </div>
 

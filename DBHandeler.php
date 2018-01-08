@@ -11,7 +11,8 @@ class DBHandeler
 
     public function __construct(string $payer)
     {
-        $this->conn = new PDO('mysql:host=' . Config::DB_HOST . ';dbname=' . Config::DB_NAME . ';charset=utf8', Config::DB_USERNAME,
+        $this->conn = new PDO('mysql:host=' . Config::DB_HOST . ';dbname=' . Config::DB_NAME . ';charset=utf8',
+            Config::DB_USERNAME,
             Config::DB_PASSWORD);
         $this->payer = $payer;
     }
@@ -35,13 +36,48 @@ class DBHandeler
 
     /**
      * Get information about the total made payments
-     * @return object
+     * @return Payments
      */
-    public function totalPayments()
+    public function totalUserPayments(): Payments
     {
-        $statement = $this->conn->prepare('SELECT SUM(amount) as amount, COUNT(*) as payments FROM payments WHERE payer = :payer');
+        $statement = $this->conn->prepare('SELECT SUM(amount) as `amount`, COUNT(*) as `count` FROM payments WHERE payer = :payer');
         $statement->bindParam(':payer', $this->payer);
         $statement->execute();
-        return $statement->fetchObject();
+        return $statement->fetchObject(Payments::class);
     }
+
+    /**
+     * Get information about the total made payments for a given username
+     * @param string $user
+     * @return Payments
+     */
+    public function totalUserPaymentsForUser(string $user): Payments
+    {
+        $statement = $this->conn->prepare('SELECT SUM(amount) as `amount`, COUNT(*) as `count` FROM payments WHERE payer = :payer AND user_name = :user_name');
+        $statement->bindParam(':payer', $this->payer);
+        $statement->bindParam(':user_name', $user);
+        $statement->execute();
+        return $statement->fetchObject(Payments::class);
+    }
+
+    /**
+     * Get information about the total made payments
+     * @return Payments
+     */
+    public function totalPayments(): Payments
+    {
+        return $this->conn->query('SELECT SUM(amount) as `amount`, COUNT(*) as `count` FROM payments')->fetchObject(Payments::class);
+    }
+}
+
+class Payments
+{
+    /**
+     * @var int
+     */
+    public $amount;
+    /**
+     * @var int
+     */
+    public $count;
 }

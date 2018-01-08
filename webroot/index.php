@@ -74,7 +74,11 @@ $app->add(function (Request $request, Response $response, callable $next) use ($
  * Explanation page
  */
 $app->get('/explanation/', function (Request $request, Response $response) use ($payingUser): Response {
-    return $this->view->render($response, 'explanation.php');
+    $db = new DBHandeler($payingUser);
+    $data = $db->totalUserPayments();
+    return $this->view->render($response, 'explanation.php', [
+        'payments' => $data,
+    ]);
 });
 
 /**
@@ -84,10 +88,9 @@ $app->get('/explanation/', function (Request $request, Response $response) use (
  */
 $app->get('/', function (Request $request, Response $response) use ($payingUser): Response {
     $db = new DBHandeler($payingUser);
-    $data = $db->totalPayments();
+    $data = $db->totalUserPayments();
     return $this->view->render($response, 'home.php', [
-        'total' => $data->amount,
-        'count' => $data->payments,
+        'payments' => $data,
         'payer' => $payingUser,
     ]);
 });
@@ -103,8 +106,11 @@ $app->get('/{name}', function (Request $request, Response $response, array $args
             'payer' => $payingUser,
         ]);
     } else {
+        $db = new DBHandeler($payingUser);
+        $data = $db->totalUserPaymentsForUser($args['name']);
         return $this->view->render($response, 'index.php', [
             'name' => $args['name'],
+            'payments' => $data,
             'payer' => $payingUser,
         ]);
     }
