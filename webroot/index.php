@@ -75,7 +75,7 @@ $app->add(function (Request $request, Response $response, callable $next) use ($
  */
 $app->get('/explanation/', function (Request $request, Response $response) use ($payingUser): Response {
     $db = new DBHandeler($payingUser);
-    $data = $db->totalUserPayments();
+    $data = $db->totalPayments();
     return $this->view->render($response, 'explanation.php', [
         'payments' => $data,
     ]);
