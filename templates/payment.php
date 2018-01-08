@@ -31,27 +31,29 @@
 <body>
 <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
-        <p>
-            Wegens een overschot aan geld is <?= htmlentities(ucfirst($payer)) ?> begonnen met alles voor iedereen te betalen. Voor verdere informatie kunt u contact opnemen met <?= htmlentities(ucfirst($payer)) ?>, te bereiken op
-            <a href="mailto:kevinbetaaltalles@gmail.com" target="#">declaratie@<?= htmlentities($payer) ?>betaaltalles.nl</a>
-        </p>
-        <form method="post">
-            <div class="form-group" >
-                <label for="name">Wie ben je?</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Piet">
-            </div>
-            <div class="form-group">
-                <label for="cash">Hoeveel</label>
-                <input type="number" name="geld" class="form-control" id="cash" placeholder="4747">
-            </div>
-            <div class="form-group" >
-                <label for="wat">Waarvoor betaalt <?= htmlentities(ucfirst($payer)) ?>?</label>
-                <input type="text" class="form-control" id="wat" name="wat" placeholder="Een huis...">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <input type="hidden" name="<?= $nameKey ?>" value="<?= $name ?>">
-            <input type="hidden" name="<?= $valueKey ?>" value="<?= $value ?>">
-        </form>
+        <div class="container">
+            <p>
+                Wegens een overschot aan geld is <?= htmlentities(ucfirst($payer)) ?> begonnen met alles voor iedereen te betalen. Voor verdere informatie kunt u contact opnemen met <?= htmlentities(ucfirst($payer)) ?>, te bereiken op
+                <a href="mailto:kevinbetaaltalles@gmail.com" target="#">declaratie@<?= htmlentities($payer) ?>betaaltalles.nl</a>
+            </p>
+            <form method="post">
+                <div class="form-group" >
+                    <label for="name">Wie ben je?</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Piet">
+                </div>
+                <div class="form-group">
+                    <label for="cash">Hoeveel</label>
+                    <input type="number" name="geld" class="form-control" id="cash" placeholder="4747">
+                </div>
+                <div class="form-group" >
+                    <label for="wat">Waarvoor betaalt <?= htmlentities(ucfirst($payer)) ?>?</label>
+                    <input type="text" class="form-control" id="wat" name="wat" placeholder="Een huis...">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <input type="hidden" name="<?= $nameKey ?>" value="<?= $name ?>">
+                <input type="hidden" name="<?= $valueKey ?>" value="<?= $value ?>">
+            </form>
+        </div>
     </div>
 </div>
 </body>

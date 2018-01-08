@@ -33,7 +33,7 @@
 <body>
 <div class="container h-100">
     <div class="row h-100 justify-content-center text-center align-items-center">
-        <div>
+        <div class="container">
             <h1 class="font-weight-bold"><?= htmlentities(ucfirst($payer)) ?> betaalt alles
                 voor <?= htmlspecialchars(ucfirst($name)) ?></h1>
             <small class="form-text text-muted">Er zijn al <?= $payments->count ?> betalingen gemaakt
