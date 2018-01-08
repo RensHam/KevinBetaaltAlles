@@ -54,10 +54,28 @@ if (strpos(strtolower($_SERVER['HTTP_HOST']), 'kevin') !== false) {
     $payingUser = 'kevin';
 } else {
     $payingUser = strtolower(explode('.', $_SERVER['HTTP_HOST'])[0]);
-    if ($payingUser == 'betaaltalles' || $payingUser == 'rens') {
-        $payingUser = 'kevin';
+    if ($payingUser == 'betaaltalles' || $payingUser == 'www') {
+        $payingUser = '';
     }
 }
+
+/**
+ * Make sure explanation page is shown.
+ */
+$app->add(function (Request $request, Response $response, callable $next) use ($payingUser) {
+    if ($payingUser == '') {
+        return $next($request->withUri($request->getUri()->withPath('/explanation/')), $response);
+    } else {
+        return $next($request, $response);
+    }
+});
+
+/**
+ * Explanation page
+ */
+$app->get('/explanation/', function (Request $request, Response $response) use ($payingUser): Response {
+    return $this->view->render($response, 'explanation.php');
+});
 
 /**
  * Return home page
