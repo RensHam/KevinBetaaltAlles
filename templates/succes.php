@@ -13,7 +13,7 @@
 
     <meta name="description" content="<?= htmlentities(ucfirst($payer)) ?> betaalt altijd alles">
 
-    <title>Kevin betaalt alles</title>
+    <title><?= htmlentities(ucfirst($payer)) ?> betaalt alles</title>
     <link rel="stylesheet" href="/assets/css/main.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111964650-1"></script>
