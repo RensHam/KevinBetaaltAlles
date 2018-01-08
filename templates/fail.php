@@ -26,7 +26,7 @@
 <body>
 <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
-        <h1 class="font-weight-bold text-center">Het is niet mogelijk om Kevin geld te geven</h1>
+        <h1 class="font-weight-bold text-center">Het is niet mogelijk om <?= htmlentities(ucfirst($payer)) ?> geld te geven</h1>
     </div>
 </div>
 </body>
