@@ -39,6 +39,9 @@
             <small class="form-text text-muted">Er zijn al <?= $payments->count ?> betalingen gemaakt
                 door <?= htmlentities(ucfirst($payer)) ?> voor <?= htmlspecialchars(ucfirst($name)) ?> met een totale waarde
                 van &euro;<?= (int)$payments->amount ?></small>
+            <small class="form-text text-muted">
+                Voer een nieuwe declaratie in op <a href="/add/payment/<?= htmlspecialchars(ucfirst($name)) ?>"> http://<?= htmlentities($payer) ?>.betaaltalles.nl/add/payment</a>
+            </small>
         </div>
     </div>
 </div>

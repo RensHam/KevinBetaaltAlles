@@ -121,7 +121,7 @@ $app->get('/{name}', function (Request $request, Response $response, array $args
  * method GET
  * url /add/payment
  */
-$app->get('/add/payment', function (Request $request, Response $response) use ($payingUser): Response {
+$app->get('/add/payment[/{who}]', function (Request $request, Response $response, array $args) use ($payingUser): Response {
     $nameKey = $this->csrf->getTokenNameKey();
     $valueKey = $this->csrf->getTokenValueKey();
     $name = $request->getAttribute($nameKey);
@@ -133,6 +133,7 @@ $app->get('/add/payment', function (Request $request, Response $response) use ($
         'name' => $name,
         'value' => $value,
         'payer' => $payingUser,
+        'who' => $args['who'],
     ]);
 });
 
