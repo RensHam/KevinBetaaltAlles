@@ -142,7 +142,7 @@ $app->get('/add/payment[/{who}]', function (Request $request, Response $response
  * method POST
  * url /add/payment
  */
-$app->post('/add/payment', function (Request $request, Response $response) use ($payingUser): Response {
+$app->post('/add/payment[/{who}]', function (Request $request, Response $response) use ($payingUser): Response {
     if ($request->getAttribute('has_errors')) {
         return $this->view->render($response, 'fail.php');
     } else {
