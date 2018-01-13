@@ -12,12 +12,16 @@
 
     <meta charset="UTF-8">
     <title>Fail</title>
-    <link rel="stylesheet" href="/assets/css/main.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <?php require_once 'main_css.php' ?>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111964650-1"></script>
+    <script async src="/assets/load_css.js"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'UA-111964650-1');
@@ -26,7 +30,8 @@
 <body>
 <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
-        <h1 class="font-weight-bold text-center">Het is niet mogelijk om <?= htmlentities(ucfirst($payer)) ?> geld te geven</h1>
+        <h1 class="font-weight-bold text-center">Het is niet mogelijk om <?= htmlentities(ucfirst($payer)) ?> geld te
+            geven</h1>
     </div>
 </div>
 </body>
