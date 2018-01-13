@@ -28,7 +28,7 @@
         gtag('config', 'UA-111964650-1');
     </script>
 </head>
-<body>
+<body onload="downloadCss()">
 <div class="pull">
     <main class="main">
         <div class="container">

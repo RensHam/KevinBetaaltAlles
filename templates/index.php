@@ -29,7 +29,7 @@
         gtag('config', 'UA-111964650-1');
     </script>
 </head>
-<body>
+<body onload="downloadCss()">
 <div class="container h-100">
     <div class="row h-100 justify-content-center text-center align-items-center">
         <div class="container">

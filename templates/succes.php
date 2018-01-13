@@ -30,7 +30,7 @@
     </script>
 
 </head>
-<body>
+<body onload="downloadCss()">
 <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
         <h1 class="font-weight-bold text-center"><?= htmlentities(ucfirst($payer)) ?> heeft
