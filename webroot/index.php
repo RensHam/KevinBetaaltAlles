@@ -31,7 +31,7 @@ $container['view'] = function ($container) {
     return new PhpRenderer('../templates/');
 };
 
-$container['csrf'] = function ($c) {
+$container['csrf'] = function ($container) {
     return new Guard;
 };
 
@@ -109,7 +109,7 @@ $app->get('/{name}', function (Request $request, Response $response, array $args
         $db = new DBHandeler($payingUser);
         $data = $db->totalUserPaymentsForUser($args['name']);
         return $this->view->render($response, 'index.php', [
-            'name' => $args['name'],
+            'name' => capitalize($args['name']),
             'payments' => $data,
             'payer' => $payingUser,
         ]);
@@ -121,21 +121,27 @@ $app->get('/{name}', function (Request $request, Response $response, array $args
  * method GET
  * url /add/payment
  */
-$app->get('/add/payment[/{who}]', function (Request $request, Response $response, array $args) use ($payingUser): Response {
-    $nameKey = $this->csrf->getTokenNameKey();
-    $valueKey = $this->csrf->getTokenValueKey();
-    $name = $request->getAttribute($nameKey);
-    $value = $request->getAttribute($valueKey);
+$app->get('/add/payment[/{who}]',
+    function (Request $request, Response $response, array $args) use ($payingUser): Response {
+        if (strtolower($args['who']) == $payingUser) {
+            return $this->view->render($response, 'nope.php', [
+                'payer' => $payingUser,
+            ]);
+        }
+        $nameKey = $this->csrf->getTokenNameKey();
+        $valueKey = $this->csrf->getTokenValueKey();
+        $name = $request->getAttribute($nameKey);
+        $value = $request->getAttribute($valueKey);
 
-    return $this->view->render($response, 'payment.php', [
-        'nameKey' => $nameKey,
-        'valueKey' => $valueKey,
-        'name' => $name,
-        'value' => $value,
-        'payer' => $payingUser,
-        'who' => $args['who'],
-    ]);
-});
+        return $this->view->render($response, 'payment.php', [
+            'nameKey' => $nameKey,
+            'valueKey' => $valueKey,
+            'name' => $name,
+            'value' => $value,
+            'payer' => $payingUser,
+            'who' => capitalize($args['who']),
+        ]);
+    });
 
 /**
  * Add a payment to the database and validate user input on error an error page is shown else a succes page
@@ -153,11 +159,19 @@ $app->post('/add/payment[/{who}]', function (Request $request, Response $respons
 
         return $this->view->render($response, 'succes.php', [
             'cost' => $allPostPutVars['geld'],
-            'name' => $allPostPutVars['name'],
+            'name' => capitalize($allPostPutVars['name']),
             'payer' => $payingUser,
         ]);
     }
 })->add(new Validation($validators));
+
+function capitalize(string $user): string
+{
+    if (strpos($user, ' ') === false) {
+        return ucfirst($user);
+    }
+    return $user;
+}
 
 try {
     $app->run();

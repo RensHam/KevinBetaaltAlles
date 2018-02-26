@@ -40,14 +40,13 @@
                 Wegens een overschot aan geld is <?= htmlentities(ucfirst($payer)) ?> begonnen met alles voor iedereen
                 te betalen. Voor verdere informatie kunt u contact opnemen met <?= htmlentities(ucfirst($payer)) ?>, te
                 bereiken op
-                <a href="mailto:kevinbetaaltalles@gmail.com" target="#">declaratie@<?= htmlentities($payer) ?>
-                    betaaltalles.nl</a>
+                <a href="mailto:kevinbetaaltalles@gmail.com" target="#">declaratie@<?= htmlentities($payer) ?>betaaltalles.nl</a>
             </p>
             <form method="post">
                 <div class="form-group">
                     <label for="name">Wie ben je?</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Piet"
-                           value="<?= htmlspecialchars(ucfirst($who)) ?>">
+                           value="<?= htmlspecialchars($who) ?>">
                 </div>
                 <div class="form-group">
                     <label for="cash">Hoeveel</label>
