@@ -139,7 +139,7 @@ $app->get('/add/payment[/{who}]',
             'name' => $name,
             'value' => $value,
             'payer' => $payingUser,
-            'who' => capitalize($args['who']),
+            'who' => $args['who'] ? capitalize($args['who']) : '',
         ]);
     });
 
