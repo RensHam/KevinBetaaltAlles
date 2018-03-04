@@ -180,7 +180,7 @@ $app->get('/wordcount/', function (Request $request, Response $response): Respon
 
 $app->post('/wordcount/', function (Request $request, Response $response): Response {
     $text = $request->getParsedBody()['text'];
-    $text = preg_replace('/[^A-Za-z0-9\ ]/', '', $text);
+    $text = preg_replace('/[^A-Za-z\ ]/', ' ', $text);
     $words = explode(' ', $text);
     usort($words, function ($wordA, $wordB) {
         return strcmp($wordA, $wordB);
@@ -189,7 +189,7 @@ $app->post('/wordcount/', function (Request $request, Response $response): Respo
     foreach ($words as $word) {
         if (array_key_exists($word, $result)) {
             $result[$word]++;
-        } else {
+        } elseif ($word) {
             $result[$word] = 1;
         }
     }
