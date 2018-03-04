@@ -6,14 +6,14 @@ require '../DBHandeler.php';
 use DavidePastore\Slim\Validation\Validation;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Respect\Validation\Validator;
 use Slim\App;
-use \Psr\Http\Message\ServerRequestInterface as Request;
-use \Psr\Http\Message\ResponseInterface as Response;
 use Slim\Csrf\Guard;
 use Slim\Exception\MethodNotAllowedException;
 use Slim\Exception\NotFoundException;
 use Slim\Views\PhpRenderer;
-use Respect\Validation\Validator;
 
 $config = [
     'settings' => [
@@ -164,6 +164,39 @@ $app->post('/add/payment[/{who}]', function (Request $request, Response $respons
         ]);
     }
 })->add(new Validation($validators));
+
+$app->get('/wordcount/', function (Request $request, Response $response): Response {
+    $nameKey = $this->csrf->getTokenNameKey();
+    $valueKey = $this->csrf->getTokenValueKey();
+    $name = $request->getAttribute($nameKey);
+    $value = $request->getAttribute($valueKey);
+    return $this->view->render($response, 'wordForm.php', [
+        'nameKey' => $nameKey,
+        'valueKey' => $valueKey,
+        'name' => $name,
+        'value' => $value,
+    ]);
+});
+
+$app->post('/wordcount/', function (Request $request, Response $response): Response {
+    $text = $request->getParsedBody()['text'];
+    $text = preg_replace('/[^A-Za-z0-9\ ]/', '', $text);
+    $words = explode(' ', $text);
+    usort($words, function ($wordA, $wordB) {
+        return strcmp($wordA, $wordB);
+    });
+    $result = [];
+    foreach ($words as $word) {
+        if (array_key_exists($word, $result)) {
+            $result[$word]++;
+        } else {
+            $result[$word] = 1;
+        }
+    }
+    return $this->view->render($response, 'wordCount.php', [
+        'words' => $result,
+    ]);
+});
 
 function capitalize(string $user): string
 {
