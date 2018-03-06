@@ -180,7 +180,7 @@ $app->get('/wordcount/', function (Request $request, Response $response): Respon
 
 $app->post('/wordcount/', function (Request $request, Response $response): Response {
     $text = $request->getParsedBody()['text'];
-    $text = preg_replace('/[^A-Za-z\ ]/', ' ', $text);
+    $text = preg_replace('/[^0-9A-Za-z\ ]/', ' ', $text);
     $words = explode(' ', $text);
     usort($words, function ($wordA, $wordB) {
         return strcmp($wordA, $wordB);
