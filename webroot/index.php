@@ -165,39 +165,6 @@ $app->post('/add/payment[/{who}]', function (Request $request, Response $respons
     }
 })->add(new Validation($validators));
 
-$app->get('/wordcount/', function (Request $request, Response $response): Response {
-    $nameKey = $this->csrf->getTokenNameKey();
-    $valueKey = $this->csrf->getTokenValueKey();
-    $name = $request->getAttribute($nameKey);
-    $value = $request->getAttribute($valueKey);
-    return $this->view->render($response, 'wordForm.php', [
-        'nameKey' => $nameKey,
-        'valueKey' => $valueKey,
-        'name' => $name,
-        'value' => $value,
-    ]);
-});
-
-$app->post('/wordcount/', function (Request $request, Response $response): Response {
-    $text = $request->getParsedBody()['text'];
-    $text = preg_replace('/[^0-9A-Za-z\ ]/', ' ', $text);
-    $words = explode(' ', $text);
-    usort($words, function ($wordA, $wordB) {
-        return strcmp($wordA, $wordB);
-    });
-    $result = [];
-    foreach ($words as $word) {
-        if (array_key_exists($word, $result)) {
-            $result[$word]++;
-        } elseif ($word) {
-            $result[$word] = 1;
-        }
-    }
-    return $this->view->render($response, 'wordCount.php', [
-        'words' => $result,
-    ]);
-});
-
 function capitalize(string $user): string
 {
     if (strpos($user, ' ') === false) {
