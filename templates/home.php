@@ -47,7 +47,7 @@
 </div>
 <footer>
     <div class="container text-center">
-        <span class="text-muted text-center">Er zijn al <?= $payments->count ?> betalingen gemaakt door <?= htmlentities(ucfirst($payer)) ?> met een totale waarde van &euro;<?= (int) $payments->amount ?></span>
+        <span class="text-muted text-center">Er zijn al <?= $payments->count ?> betalingen gemaakt door <?= htmlentities(ucfirst($payer)) ?> met een totale waarde van &euro;<?= $payments->amount ?></span>
     </div>
 </footer>
 </body>
