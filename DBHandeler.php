@@ -1,4 +1,7 @@
 <?php
+
+use Entity\Entity;
+
 require 'Config.php';
 
 /**
@@ -43,7 +46,7 @@ class DBHandeler
         $statement = $this->conn->prepare('SELECT SUM(amount) as `amount`, COUNT(*) as `count` FROM payments WHERE payer = :payer');
         $statement->bindParam(':payer', $this->payer);
         $statement->execute();
-        return $statement->fetchObject(Payments::class);
+        return new Payments($statement->fetch(PDO::FETCH_ASSOC));
     }
 
     /**
@@ -57,7 +60,7 @@ class DBHandeler
         $statement->bindParam(':payer', $this->payer);
         $statement->bindParam(':user_name', $user);
         $statement->execute();
-        return $statement->fetchObject(Payments::class);
+        return new Payments($statement->fetch(PDO::FETCH_ASSOC));
     }
 
     /**
@@ -66,18 +69,29 @@ class DBHandeler
      */
     public function totalPayments(): Payments
     {
-        return $this->conn->query('SELECT SUM(amount) as `amount`, COUNT(*) as `count` FROM payments')->fetchObject(Payments::class);
+        return new Payments($this->conn->query('SELECT SUM(amount) as `amount`, COUNT(*) as `count` FROM payments')->fetch(PDO::FETCH_ASSOC));
     }
 }
 
-class Payments
+/**
+ * @property string $amount
+ * @property string $count
+ */
+class Payments extends Entity
 {
     /**
-     * @var int
+     * @return string
      */
-    public $amount;
+    public function getAmount(): string
+    {
+        return number_format($this->get('amount'));
+    }
+
     /**
-     * @var int
+     * @return string
      */
-    public $count;
+    public function getCount(): string
+    {
+        return number_format($this->get('count'));
+    }
 }
